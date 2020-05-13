@@ -21,12 +21,15 @@ app.get('/', (req, res) => {
 mongoose.connect('mongodb://localhost:27017/cafe', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: true
 }, (err, res) => {
     if ( err ) throw err;
     console.log('DB connected')
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, (err, res) => {
     console.log('Listenning on port: ', process.env.PORT);
+}, () => {
+    console.log('Error connection to DB');
 });
