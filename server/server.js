@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     res.json('Hello World');
 });
 
-mongoose.connect('mongodb://localhost:27017/cafe', {
+mongoose.connect(process.env.URLDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
