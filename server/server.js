@@ -2,6 +2,7 @@ require('./config/config');
 
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 
 // const { json } = require('express');
 const bodyParser = require('body-parser');
@@ -12,12 +13,11 @@ const app = express();
 app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+// public folder
+app.use(express.static( path.resolve( __dirname, '../public' ) ));
+
 // Routes
 app.use( require('./routes/index') );
-
-app.get('/', (req, res) => {
-    res.json('Hello World');
-});
 
 mongoose.connect(process.env.URLDB, {
     useNewUrlParser: true,
