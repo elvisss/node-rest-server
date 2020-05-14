@@ -12,7 +12,8 @@ const app = express();
 app.use(express.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.use( require('./routes/user.router') );
+// Routes
+app.use( require('./routes/index') );
 
 app.get('/', (req, res) => {
     res.json('Hello World');
@@ -30,6 +31,4 @@ mongoose.connect(process.env.URLDB, {
 
 app.listen(process.env.PORT, (err, res) => {
     console.log('Listenning on port: ', process.env.PORT);
-}, () => {
-    console.log('Error connection to DB');
 });
