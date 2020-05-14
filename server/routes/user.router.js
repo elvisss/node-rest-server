@@ -2,10 +2,11 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const User = require('./../models/user.model');
+const { verifyToken, verifyAdminRole } = require('./../middlewares/auth');
 
 const app = express();
 
-app.get('/user', (req, res) => {
+app.get('/user', verifyToken, (req, res) => {
 
     let from = req.query.from || 0;
     from = Number(from);
@@ -34,7 +35,7 @@ app.get('/user', (req, res) => {
 
 });
 
-app.post('/user', (req, res) => {
+app.post('/user', [verifyToken, verifyAdminRole], (req, res) => {
     let body = req.body;
 
     let user = new User({
@@ -64,7 +65,7 @@ app.post('/user', (req, res) => {
 
 });
 
-app.put('/user/:id', (req, res) => {
+app.put('/user/:id', [verifyToken, verifyAdminRole], (req, res) => {
 
     let id = req.params.id;
     let body = _.pick( req.body, ['name', 'email', 'img', 'role', 'state'] )
@@ -87,7 +88,7 @@ app.put('/user/:id', (req, res) => {
 
 });
 
-app.delete('/user/:id', (req, res) => {
+app.delete('/user/:id', [verifyToken, verifyAdminRole], (req, res) => {
 
     let id = req.params.id;
 
@@ -99,7 +100,9 @@ app.delete('/user/:id', (req, res) => {
             });
         }
         
-        if (!userDeleted) {
+        // User deleted or already disabled
+
+        if (!userDeleted || !userDeleted.state) {
             return res.status(400).json({
                 ok: false,
                 err: {
