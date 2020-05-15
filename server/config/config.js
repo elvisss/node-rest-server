@@ -8,7 +8,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
 // Expiration
 
-process.env.EXPIRATION = 60 * 60 * 24 * 30;
+process.env.EXPIRATION = 60 * 60 * 60 * 24 * 30;
 
 // Seed
 
@@ -29,5 +29,5 @@ process.env.URLDB = urlDB;
 // Google Client ID
 
 process.env.CLIENT_ID =
-  process.env.CLIENT_ID ||
-  "250927213013-89qlfolntklqig0gd39k2ln0t6gud79o.apps.googleusercontent.com";
+    process.env.CLIENT_ID ||
+    "250927213013-89qlfolntklqig0gd39k2ln0t6gud79o.apps.googleusercontent.com";

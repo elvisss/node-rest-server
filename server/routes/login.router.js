@@ -109,7 +109,7 @@ app.post('/google', async (req, res) => {
                     expiresIn: process.env.EXPIRATION
                 });
 
-                return res.json({
+                res.json({
                     ok: true,
                     user: userDB,
                     token
@@ -138,7 +138,7 @@ app.post('/google', async (req, res) => {
                     expiresIn: process.env.EXPIRATION
                 });
 
-                return res.json({
+                res.json({
                     ok: true,
                     user: userDB,
                     token

@@ -56,7 +56,7 @@ app.post('/user', [verifyToken, verifyAdminRole], (req, res) => {
 
         // userDB.password = null;
 
-        res.json({
+        res.status(201).json({
             ok: true,
             user: userDB
         });

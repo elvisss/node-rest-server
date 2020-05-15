@@ -8,7 +8,7 @@ let verifyToken = (req, res, next) => {
             return res.status(401).json({
                 ok: false,
                 err
-            })
+            });
         }
 
         req.user = decoded.user;
@@ -24,7 +24,7 @@ let verifyAdminRole = (req, res, next) => {
         return res.status(401).json({
             ok: false,
             err: {
-                message: 'User not valid'
+                message: 'User is not admin'
             }
         });
     }
