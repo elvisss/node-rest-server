@@ -13,7 +13,7 @@ app.get('/user', verifyToken, (req, res) => {
     let limit = req.query.limit || 5;
     limit = Number(limit);
 
-    User.find({ state: true }, 'name email role state google')
+    User.find({ state: true }, 'name email role state google img')
         .skip(from)
         .limit(limit)
         .exec( (err, users) => {
